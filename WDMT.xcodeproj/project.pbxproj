@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		763FAB432B52D78E006E002D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763FAB422B52D78E006E002D /* AppDelegate.swift */; };
 		763FAB452B52D78E006E002D /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 763FAB442B52D78E006E002D /* art.scnassets */; };
-		763FAB472B52D78E006E002D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763FAB462B52D78E006E002D /* ViewController.swift */; };
+		763FAB472B52D78E006E002D /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763FAB462B52D78E006E002D /* SceneViewController.swift */; };
 		763FAB4A2B52D78E006E002D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 763FAB482B52D78E006E002D /* Main.storyboard */; };
 		763FAB4C2B52D790006E002D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 763FAB4B2B52D790006E002D /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -18,7 +18,7 @@
 		763FAB3F2B52D78E006E002D /* WDMT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WDMT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		763FAB422B52D78E006E002D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		763FAB442B52D78E006E002D /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		763FAB462B52D78E006E002D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		763FAB462B52D78E006E002D /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
 		763FAB492B52D78E006E002D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		763FAB4B2B52D790006E002D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,13 +53,37 @@
 		763FAB412B52D78E006E002D /* WDMT */ = {
 			isa = PBXGroup;
 			children = (
+				763FAB532B52D802006E002D /* Models */,
+				763FAB522B52D7F8006E002D /* Controller */,
+				763FAB542B52D809006E002D /* Views */,
 				763FAB422B52D78E006E002D /* AppDelegate.swift */,
 				763FAB442B52D78E006E002D /* art.scnassets */,
-				763FAB462B52D78E006E002D /* ViewController.swift */,
-				763FAB482B52D78E006E002D /* Main.storyboard */,
 				763FAB4B2B52D790006E002D /* Assets.xcassets */,
 			);
 			path = WDMT;
+			sourceTree = "<group>";
+		};
+		763FAB522B52D7F8006E002D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				763FAB462B52D78E006E002D /* SceneViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		763FAB532B52D802006E002D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		763FAB542B52D809006E002D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				763FAB482B52D78E006E002D /* Main.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,7 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				763FAB472B52D78E006E002D /* ViewController.swift in Sources */,
+				763FAB472B52D78E006E002D /* SceneViewController.swift in Sources */,
 				763FAB432B52D78E006E002D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,6 +306,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
@@ -311,6 +336,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
