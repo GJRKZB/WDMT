@@ -10,11 +10,16 @@ import SceneKit
 import ARKit
 
 class SceneViewController: UIViewController, ARSCNViewDelegate {
-
+    
     @IBOutlet var sceneView: ARSCNView!
     
     var dotNodes = [SCNNode]()
     var textNode = SCNNode()
+    var width = ""
+    var height = ""
+    var price = ""
+    
+    var priceData = PriceData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +37,7 @@ class SceneViewController: UIViewController, ARSCNViewDelegate {
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = [.horizontal, .vertical]
-
+        
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -78,7 +83,7 @@ class SceneViewController: UIViewController, ARSCNViewDelegate {
     }
     
     private func addDotNode(at result : ARRaycastResult) -> SCNNode{
-        let dotGeometry = SCNSphere(radius: 0.005)
+        let dotGeometry = SCNSphere(radius: 0.010)
         let dotMaterial = SCNMaterial()
         
         dotMaterial.diffuse.contents = UIColor.red
@@ -87,12 +92,12 @@ class SceneViewController: UIViewController, ARSCNViewDelegate {
         let dotNode = SCNNode(geometry: dotGeometry)
         
         dotNode.position = SCNVector3(
-        result.worldTransform.columns.3.x,
-        result.worldTransform.columns.3.y,
-        result.worldTransform.columns.3.z)
+            result.worldTransform.columns.3.x,
+            result.worldTransform.columns.3.y,
+            result.worldTransform.columns.3.z)
         
         dotNodes.append(dotNode)
-    
+        
         if dotNodes.count >= 3 {
             calculateDistances()
         }
@@ -101,25 +106,36 @@ class SceneViewController: UIViewController, ARSCNViewDelegate {
         
     }
     
-    func calculateDistances() {
-            let start = dotNodes[0].position
-            let middle = dotNodes[1].position
-            let end = dotNodes[2].position
-
+    private func calculateDistances() {
+        let start = dotNodes[0].position
+        let middle = dotNodes[1].position
+        let end = dotNodes[2].position
+        
         let widthDistance = distanceBetween(first: start, second: middle)
         let heightDistance = distanceBetween(first: middle, second: end)
-
-            print("Width: \(widthDistance)")
-            print("Height: \(heightDistance)")
+        
+        width = String(format: "%.0f", widthDistance)
+        height = String(format: "%.0f", heightDistance)
+        
+        guard let width = Int(width), let height = Int(height),
+              let calculatedPrice = priceData.calculatePrice(width: width, height: height) else {
+            price = "Not able to calculate price"
+            return
         }
+        
+        print(width)
+        print(height)
+        print(calculatedPrice)
+    }
+    
+    private func distanceBetween(first: SCNVector3, second: SCNVector3) -> Float {
+        let distance = sqrt(
+            pow(second.x - first.x, 2) +
+            pow(second.y - first.y, 2) +
+            pow(second.z - first.z, 2)
+        )
+        return distance * 100
+    }
 
-        func distanceBetween(first: SCNVector3, second: SCNVector3) -> Float {
-            let distance = sqrt(
-                pow(second.x - first.x, 2) +
-                pow(second.y - first.y, 2) +
-                pow(second.z - first.z, 2)
-            )
-            return distance * 100
-        }
     
 }
